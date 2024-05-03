@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, Text, SafeAreaView, StyleSheet } from 'react-native'
-import SafeViewAndroid from './SafeViewAndroid'
+import SafeViewAndroid from '../components/SafeViewAndroid'
 import { Feather } from '@expo/vector-icons'
 
 const CurrentWeather = () => {
