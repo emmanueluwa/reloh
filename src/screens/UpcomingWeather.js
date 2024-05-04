@@ -62,7 +62,7 @@ const UpcomingWeather = () => {
 
   const { container, img } = styles
   return (
-    <SafeAreaView style={SafeViewAndroid.AndroidSafeArea}>
+    <SafeAreaView style={[SafeViewAndroid.AndroidSafeArea, container]}>
       <ImageBackground
         source={require('../../assets/up-background.jpg')}
         style={img}
@@ -80,8 +80,8 @@ const UpcomingWeather = () => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    marginTop: StatusBar.currentHeight || 0
+    flex: 1
+    // marginTop: StatusBar.currentHeight || 0
   },
 
   img: {

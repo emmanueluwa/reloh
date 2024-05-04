@@ -23,10 +23,10 @@ const City = () => {
     rowLayout
   } = styles
   return (
-    <SafeAreaView style={SafeViewAndroid.AndroidSafeArea}>
+    <SafeAreaView style={[SafeViewAndroid.AndroidSafeArea, container]}>
       <ImageBackground
         source={require('../../assets/city-bg.jpg')}
-        style={styles.imageLayout}
+        style={imageLayout}
       >
         <Text style={[cityName, cityText]}>London</Text>
         <Text style={[countryName, cityText]}>UK</Text>
