@@ -5,10 +5,10 @@ import { Feather } from '@expo/vector-icons'
 import RowText from '../components/RowText'
 import { weatherType } from '../utilities/weatherType'
 
-const CurrentWeather = () => {
+const CurrentWeather = ({ weatherData }) => {
   const {
     container,
-    temp,
+    tempStyles,
     feels,
     highLowWrapper,
     highLow,
@@ -16,17 +16,34 @@ const CurrentWeather = () => {
     description,
     message
   } = styles
+
+  const {
+    main: { temp, feels_like, temp_max, temp_min },
+    weather
+  } = weatherData
+
+  const weatherCondition = weather[0].main
+
   return (
-    <SafeAreaView style={SafeViewAndroid.AndroidSafeArea}>
+    <SafeAreaView
+      style={[
+        SafeViewAndroid.AndroidSafeArea,
+        { backgroundColor: weatherType[weatherCondition].backgroundColor }
+      ]}
+    >
       <View style={container}>
-        <Feather name="sun" size={100} color="black" />
-        <Text style={temp}>11</Text>
-        <Text style={feels}>Feels like 8</Text>
+        <Feather
+          name={weatherType[weatherCondition].icon}
+          size={100}
+          color="white"
+        />
+        <Text style={tempStyles}>{temp}</Text>
+        <Text style={feels}>{`Feels like ${feels_like}`}</Text>
 
         <RowText
           containerStyles={highLowWrapper}
-          messageOne={'High: 13'}
-          messageTwo={'Low: 11'}
+          messageOne={`High: ${temp_max}`}
+          messageTwo={`Low: ${temp_min}`}
           messageOneStyles={highLow}
           messageTwoStyles={highLow}
         />
@@ -34,8 +51,8 @@ const CurrentWeather = () => {
 
       <RowText
         containerStyles={bodyWrapper}
-        messageOne={'Its sunny with light breeze'}
-        messageTwo={weatherType['Drizzle'].message}
+        messageOne={weather[0].description}
+        messageTwo={weatherType[weatherCondition].message}
         messageOneStyles={description}
         messageTwoStyles={message}
       />
@@ -49,7 +66,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center'
   },
-  temp: {
+  tempStyles: {
     color: 'black',
     fontSize: 48
   },
