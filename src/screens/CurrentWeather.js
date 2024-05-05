@@ -22,22 +22,22 @@ const CurrentWeather = ({ weatherData }) => {
     weather
   } = weatherData
 
-  const weatherCondition = weather[0].main
+  const weatherCondition = weather[0]?.main
 
   return (
     <SafeAreaView
       style={[
         SafeViewAndroid.AndroidSafeArea,
-        { backgroundColor: weatherType[weatherCondition].backgroundColor }
+        { backgroundColor: weatherType[weatherCondition]?.backgroundColor }
       ]}
     >
       <View style={container}>
         <Feather
-          name={weatherType[weatherCondition].icon}
+          name={weatherType[weatherCondition]?.icon}
           size={100}
           color="white"
         />
-        <Text style={tempStyles}>{temp}</Text>
+        <Text style={tempStyles}>{`${temp}◦`}</Text>
         <Text style={feels}>{`Feels like ${feels_like}◦`}</Text>
 
         <RowText
@@ -51,8 +51,8 @@ const CurrentWeather = ({ weatherData }) => {
 
       <RowText
         containerStyles={bodyWrapper}
-        messageOne={weather[0].description}
-        messageTwo={weatherType[weatherCondition].message}
+        messageOne={weather[0]?.description}
+        messageTwo={weatherType[weatherCondition]?.message}
         messageOneStyles={description}
         messageTwoStyles={message}
       />
@@ -90,10 +90,10 @@ const styles = StyleSheet.create({
     marginBottom: 40
   },
   description: {
-    fontSize: 48
+    fontSize: 43
   },
   message: {
-    fontSize: 30
+    fontSize: 25
   }
 })
 export default CurrentWeather

@@ -3,6 +3,7 @@ import { ActivityIndicator, StyleSheet, View } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native'
 import Tabs from './src/components/Tabs'
 import { useGetWeather } from './src/hooks/useGetWeather'
+import ErrorItem from './src/components/ErrorItem'
 const weather_api_key = process.env.EXPO_WEATHER_API_KEY
 
 import * as Location from 'expo-location'
@@ -23,7 +24,11 @@ const App = () => {
 
   return (
     <View style={styles.container}>
-      <ActivityIndicator size={'large'} color={'blue'} />
+      {loading ? (
+        <ActivityIndicator size={'large'} color={'blue'} />
+      ) : (
+        <ErrorItem />
+      )}
     </View>
   )
 }
